@@ -1,0 +1,10 @@
+# values-prod.yaml
+replicaCount: 3
+
+image:
+  tag: stable
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
