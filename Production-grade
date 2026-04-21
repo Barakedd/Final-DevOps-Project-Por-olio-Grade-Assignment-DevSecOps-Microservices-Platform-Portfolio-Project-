@@ -1,0 +1,29 @@
+devsecops-microservices-platform/
+│
+├── services/
+│   ├── user-service/
+│   │   ├── app.py
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   │
+│   └── task-service/
+│       ├── app.py
+│       ├── requirements.txt
+│       └── Dockerfile
+│
+├── infra/
+│   ├── k8s/
+│   ├── helm/
+│   └── argocd/
+│
+├── ci/
+│   └── Jenkinsfile
+│
+├── security/
+│   ├── trivy.yaml
+│   └── policies/
+│
+├── scripts/
+│
+├── docker-compose.yml
+└── README.md
