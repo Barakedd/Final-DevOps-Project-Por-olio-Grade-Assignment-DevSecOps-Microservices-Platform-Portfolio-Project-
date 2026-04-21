@@ -1,0 +1,46 @@
+pipeline {
+  agent any
+
+  environment {
+    IMAGE = "yourdockerhub/app:${GIT_COMMIT}"
+  }
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('SAST') {
+      steps {
+        sh 'pip install bandit && bandit -r services/'
+      }
+    }
+
+    stage('Dependency Scan') {
+      steps {
+        sh 'pip install safety && safety check'
+      }
+    }
+
+    stage('Build Image') {
+      steps {
+        sh 'docker build -t $IMAGE .'
+      }
+    }
+
+    stage('Image Scan') {
+      steps {
+        sh 'trivy image --exit-code 1 --severity CRITICAL $IMAGE'
+      }
+    }
+
+    stage('Push Image') {
+      steps {
+        sh 'docker push $IMAGE'
+      }
+    }
+  }
+}
