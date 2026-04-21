@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-app
+spec:
+  source:
+    repoURL: https://github.com/YOUR_USERNAME/devsecops-microservices-platform
+    targetRevision: HEAD
+    path: infra/helm
